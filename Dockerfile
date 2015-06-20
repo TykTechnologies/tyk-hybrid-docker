@@ -1,4 +1,5 @@
 FROM ubuntu
+RUN apt-get update
 RUN apt-get install -y ca-certificates
 RUN apt-get install -y redis-server
 
