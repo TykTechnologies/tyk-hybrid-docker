@@ -1,6 +1,6 @@
 FROM ubuntu
 RUN apt-get install -y ca-certificates
-RUN apt-get install -y redis
+RUN apt-get install -y redis-server
 
 COPY tyk /opt/tyk 
 COPY entrypoint.sh /opt/tyk/entrypoint.sh
