@@ -29,11 +29,11 @@ then
         exit
 fi
 
-REDIS=$5
+REDISHOST=$5
 if [ -z "$5" ]
 then
         echo "Using Redis localhost"
-        REDIS=localhost
+        REDISHOST=localhost
 fi
 
 RPORT=$6
@@ -50,11 +50,11 @@ APIKEY=$4
 
 cwd=$(pwd)
 mkdir confs
-sudo docker stop tyk_hybrid && docker rm tyk_hybrid
+docker stop tyk_hybrid && docker rm tyk_hybrid
 
-sudo docker pull tykio/tyk-hybrid-docker
+docker pull tykio/tyk-hybrid-docker
 
-docker run -v $cwd/confs:/etc/nginx/sites-enabled -d --name tyk_hybrid -p $PORT:$PORT -p 80:80 -e PORT=$PORT -e SECRET=$SECRET -e ORGID=$ORGID -e APIKEY=$APIKEY -e REDIS=$REDIS -e RPORT=$RPORT tykio/tyk-hybrid-docker
+docker run -v $cwd/confs:/etc/nginx/sites-enabled -d --name tyk_hybrid -p $PORT:$PORT -p 80:80 -e PORT=$PORT -e SECRET=$SECRET -e ORGID=$ORGID -e APIKEY=$APIKEY -e REDISHOST=$REDISHOST -e RPORT=$RPORT tykio/tyk-hybrid-docker
 
 echo "Tyk Hybrid Node Running"
 echo "- To set up domains, place nginx server configs into the confs/ folder and restart"
