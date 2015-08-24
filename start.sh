@@ -52,7 +52,7 @@ cwd=$(pwd)
 mkdir confs
 docker stop tyk_hybrid && docker rm tyk_hybrid
 
-docker pull tykio/tyk-hybrid-docker
+docker pull tykio/tyk-hybrid-docker:latest
 
 docker run -v $cwd/confs:/etc/nginx/sites-enabled -d --name tyk_hybrid -p $PORT:$PORT -p 80:80 -e PORT=$PORT -e SECRET=$SECRET -e ORGID=$ORGID -e APIKEY=$APIKEY -e REDISHOST=$REDISHOST -e RPORT=$RPORT tykio/tyk-hybrid-docker
 
