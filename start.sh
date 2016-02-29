@@ -43,6 +43,13 @@ then
         RPORT=6379
 fi
 
+REDISPW=$7
+if [ -z "$7" ]
+then
+        echo "Using Redis without password"
+        REDISPW=""
+fi 
+
 PORT=$1
 SECRET=$2
 ORGID=$3
@@ -50,11 +57,12 @@ APIKEY=$4
 
 cwd=$(pwd)
 mkdir confs
-docker stop tyk_hybrid && docker rm tyk_hybrid
+docker stop 2c232a8dc3a7 && docker rm 2c232a8dc3a7
 
 docker pull tykio/tyk-hybrid-docker:latest
 
-docker run -v $cwd/confs:/etc/nginx/sites-enabled -d --name tyk_hybrid -p $PORT:$PORT -p 80:80 -e PORT=$PORT -e SECRET=$SECRET -e ORGID=$ORGID -e APIKEY=$APIKEY -e REDISHOST=$REDISHOST -e RPORT=$RPORT tykio/tyk-hybrid-docker
+CONTAINER=tykio/tyk-hybrid-docker
+docker run -v $cwd/confs:/etc/nginx/sites-enabled -d --name tyk_hybrid -p $PORT:$PORT -p 80:80 -e PORT=$PORT -e SECRET=$SECRET -e ORGID=$ORGID -e APIKEY=$APIKEY -e REDISHOST=$REDISHOST -e REDISPW=$REDISPW -e RPORT=$RPORT $CONTAINER
 
 echo "Tyk Hybrid Node Running"
 echo "- To set up domains, place nginx server configs into the confs/ folder and restart"
