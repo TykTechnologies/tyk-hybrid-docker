@@ -7,6 +7,13 @@ sed -i 's/ORGID/'$ORGID'/g' /opt/tyk/tyk.conf
 sed -i 's/APIKEY/'$APIKEY'/g' /opt/tyk/tyk.conf
 sed -i 's/REDISHOST/'$REDISHOST'/g' /opt/tyk/tyk.conf
 
+if [ -z "$VAR" ]
+	then
+		sed -i 's/REDISPW/'""'/g' /opt/tyk/tyk.conf
+	else
+		sed -i 's/REDISPW/'$REDISPW'/g' /opt/tyk/tyk.conf
+fi
+
 cd /opt/tyk/
 
 service redis-server start
