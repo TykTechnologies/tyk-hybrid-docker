@@ -57,7 +57,7 @@ APIKEY=$4
 
 cwd=$(pwd)
 mkdir confs
-docker stop 2c232a8dc3a7 && docker rm 2c232a8dc3a7
+docker stop tyk_hybrid && docker rm tyk_hybrid
 
 docker pull tykio/tyk-hybrid-docker:latest
 
