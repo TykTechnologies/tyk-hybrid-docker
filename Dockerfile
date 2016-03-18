@@ -10,6 +10,7 @@ COPY tyk /opt/tyk
 COPY nginx/1_upstream.conf /etc/nginx/conf.d/
 COPY nginx/sample.tconf /etc/nginx/sites-enabled/ 
 COPY entrypoint.sh /opt/tyk/entrypoint.sh
+COPY EULA.md /opt/tyk/EULA.md
 
 RUN chmod +x /opt/tyk/entrypoint.sh
 
@@ -17,5 +18,6 @@ VOLUME ["/opt/tyk/", "/etc/nginx/sites-enabled/"]
 
 WORKDIR /opt/tyk
 
+RUN echo "** Use of the Tyk hybrid Container is subject to the End User License Agreement located in /opt/tyk/EULA.md **"
 CMD ["./entrypoint.sh"]
 EXPOSE 8080 80 443
