@@ -1,5 +1,5 @@
 #!/bin/bash
-USAGE="--> Usage: ./start.sh PORT SECRET ORGID APIKEY (REDIS HOST) (REDIS PORT)"
+USAGE="--> Usage: ./start.sh PORT SECRET ORGID APIKEY (REDIS HOST) (REDIS PORT) (REDIS PW)"
 
 if [ -z "$1" ]
 then
@@ -50,21 +50,38 @@ then
         REDISPW=""
 fi 
 
+cwd=$(pwd)
+if [ ! -d "confs" ]; then
+  mkdir confs
+fi
+
 PORT=$1
 SECRET=$2
 ORGID=$3
 APIKEY=$4
 
-cwd=$(pwd)
-mkdir confs
-
 docker stop tyk_hybrid && docker rm tyk_hybrid
-
 docker pull tykio/tyk-hybrid-docker:latest
 
 CONTAINER=tykio/tyk-hybrid-docker
-docker run -v $cwd/confs:/etc/nginx/sites-enabled -d --name tyk_hybrid -p $PORT:$PORT -p 80:80 -e PORT=$PORT -e SECRET=$SECRET -e ORGID=$ORGID -e APIKEY=$APIKEY -e REDISHOST=$REDISHOST -e REDISPW=$REDISPW -e RPORT=$RPORT $CONTAINER
+docker run -v $cwd/confs:/etc/nginx/sites-enabled \
+        -d --name tyk_hybrid \
+        -p $PORT:$PORT \
+        -p 80:80 \
+        -e PORT=$PORT \
+        -e SECRET=$SECRET \
+        -e ORGID=$ORGID \
+        -e APIKEY=$APIKEY \
+        -e REDISHOST=$REDISHOST \
+        -e REDISPW=$REDISPW \
+        -e RPORT=$RPORT \
+        $CONTAINER
 
+# Add the following environment variable to disable the nginx service
+# -e DISABLENGINX=1 \
+
+# Add the following environment variable to have the node bind URLs to API Slugs instead of API IDs
+# -e BINDSLUG=1 \
+        
 echo "Tyk Hybrid Node Running"
-echo "- To set up domains, place nginx server configs into the confs/ folder and restart"
 echo "- To test the node, use port $PORT"
