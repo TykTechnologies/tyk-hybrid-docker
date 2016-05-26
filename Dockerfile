@@ -1,4 +1,4 @@
-FROM ubuntu
+FROM ubuntu:14.04
 RUN apt-get update && apt-get install -y ca-certificates
 RUN apt-get install -y redis-server
 RUN apt-get install -y nginx
