@@ -75,13 +75,14 @@ docker run -v $cwd/confs:/etc/nginx/sites-enabled \
         -e REDISHOST=$REDISHOST \
         -e REDISPW=$REDISPW \
         -e RPORT=$RPORT \
+        -e BINDSLUG=1 \
         $CONTAINER
 
 # Add the following environment variable to disable the nginx service
 # -e DISABLENGINX=1 \
 
-# Add the following environment variable to have the node bind URLs to API Slugs instead of API IDs
-# -e BINDSLUG=1 \
+# Add the following environment variable to have the node bind URLs to API IDs instead of Slugs
+# -e BINDSLUG=0 \
         
 echo "Tyk Hybrid Node Running"
 echo "- To test the node, use port $PORT"
