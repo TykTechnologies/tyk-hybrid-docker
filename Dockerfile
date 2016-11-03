@@ -15,6 +15,7 @@ RUN cd protobuf-3.1.0/ &&  ./configure -prefix=/usr && make && make install
 RUN apt-get install -y python3-setuptools
 RUN apt-get install -y python3-dev
 RUN cd protobuf-3.1.0/python && python3 setup.py build --cpp_implementation && python3 setup.py install --cpp_implementation
+RUN apt-get install -y libpython3.4
 
 RUN rm /etc/nginx/sites-enabled/default
 RUN rm /etc/nginx/sites-available/default
