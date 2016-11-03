@@ -2,6 +2,19 @@ FROM ubuntu:14.04
 RUN apt-get update && apt-get install -y ca-certificates
 RUN apt-get install -y redis-server
 RUN apt-get install -y nginx
+RUN apt-get install -y wget
+RUN apt-get install -y build-essential
+RUN apt-get install -y libluajit-5.1-2
+RUN apt-get install -y luarocks
+RUN luarocks install lua-cjson
+
+RUN wget https://github.com/google/protobuf/releases/download/v3.1.0/protobuf-python-3.1.0.tar.gz
+RUN tar -xvzf protobuf-python-3.1.0.tar.gz
+RUN cd protobuf-3.1.0/ &&  ./configure -prefix=/usr && make && make install
+
+RUN apt-get install -y python3-setuptools
+RUN apt-get install -y python3-dev
+RUN cd protobuf-3.1.0/python && python3 setup.py build --cpp_implementation && python3 setup.py install --cpp_implementation
 
 RUN rm /etc/nginx/sites-enabled/default
 RUN rm /etc/nginx/sites-available/default

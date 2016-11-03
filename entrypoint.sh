@@ -32,4 +32,4 @@ echo "--> Starting Tyk Hybrid"
 echo ""
 service redis-server start
 cd /opt/tyk/
-./tyk --conf=tyk.conf
+./tyk$TYKVERSION --conf=tyk.conf
