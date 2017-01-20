@@ -64,7 +64,7 @@ docker stop tyk_hybrid && docker rm tyk_hybrid
 docker pull tykio/tyk-hybrid-docker:latest
 
 CONTAINER=tykio/tyk-hybrid-docker
-docker run -v $cwd/confs:/etc/nginx/sites-enabled \
+docker run --restart always -v $cwd/confs:/etc/nginx/sites-enabled \
         -d --name tyk_hybrid \
         -p $PORT:$PORT \
         -p 80:80 \
