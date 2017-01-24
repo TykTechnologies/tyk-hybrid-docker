@@ -17,6 +17,9 @@ RUN apt-get install -y python3-dev
 RUN cd protobuf-3.1.0/python && python3 setup.py build --cpp_implementation && python3 setup.py install --cpp_implementation
 RUN apt-get install -y libpython3.4
 RUN apt-get install -y python3-pip
+
+# Sphinx 1.5.2 is broken
+RUN pip3 install Sphinx==1.5.1
 RUN pip3 install grpcio
 
 RUN rm /etc/nginx/sites-enabled/default
