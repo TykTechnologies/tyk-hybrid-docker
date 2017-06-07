@@ -1,6 +1,4 @@
 #!/bin/sh
-cd tyk/
-
 REDIS_URL=`echo $REDIS_URL | sed -e s,redis://,,g`
 userpass=`echo $REDIS_URL | grep @ | cut -d@ -f1`
 hostport=`echo $REDIS_URL |  cut -d@ -f2`
@@ -30,6 +28,5 @@ fi
 
 echo "-----> Starting Tyk"
 
-cat tyk.conf
-
-./tyk --conf=tyk.conf
+cd tyk
+./tyk --conf=../tyk.conf
