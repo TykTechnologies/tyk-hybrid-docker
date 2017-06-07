@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+cp -Rf * $1
+echo "-----> Preparing Tyk Hybrid environment."
