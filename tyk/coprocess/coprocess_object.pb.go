@@ -32,6 +32,20 @@ func (m *Object) String() string            { return proto.CompactTextString(m) 
 func (*Object) ProtoMessage()               {}
 func (*Object) Descriptor() ([]byte, []int) { return fileDescriptor2, []int{0} }
 
+func (m *Object) GetHookType() HookType {
+	if m != nil {
+		return m.HookType
+	}
+	return HookType_Unknown
+}
+
+func (m *Object) GetHookName() string {
+	if m != nil {
+		return m.HookName
+	}
+	return ""
+}
+
 func (m *Object) GetRequest() *MiniRequestObject {
 	if m != nil {
 		return m.Request
@@ -69,6 +83,13 @@ func (m *Event) String() string            { return proto.CompactTextString(m) }
 func (*Event) ProtoMessage()               {}
 func (*Event) Descriptor() ([]byte, []int) { return fileDescriptor2, []int{1} }
 
+func (m *Event) GetPayload() string {
+	if m != nil {
+		return m.Payload
+	}
+	return ""
+}
+
 type EventReply struct {
 }
 
@@ -89,7 +110,7 @@ var _ grpc.ClientConn
 
 // This is a compile-time assertion to ensure that this generated file
 // is compatible with the grpc package it is being compiled against.
-const _ = grpc.SupportPackageIsVersion3
+const _ = grpc.SupportPackageIsVersion4
 
 // Client API for Dispatcher service
 
@@ -185,7 +206,7 @@ var _Dispatcher_serviceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: fileDescriptor2,
+	Metadata: "coprocess_object.proto",
 }
 
 func init() { proto.RegisterFile("coprocess_object.proto", fileDescriptor2) }
