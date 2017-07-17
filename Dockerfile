@@ -40,3 +40,5 @@ WORKDIR /opt/tyk
 RUN echo "** Use of the Tyk hybrid Container is subject to the End User License Agreement located in /opt/tyk/EULA.md **"
 CMD ["./entrypoint.sh"]
 EXPOSE 8080 80 443
+
+
