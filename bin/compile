@@ -1,3 +1,5 @@
 #!/usr/bin/env bash
-cp -Rf * $1
+cp -Rf tyk/* $1
+cp entrypoint.sh $1
+cp EULA.md $1
 echo "-----> Preparing Tyk Hybrid environment."
