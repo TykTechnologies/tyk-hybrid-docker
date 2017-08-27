@@ -18,7 +18,7 @@ if [ -n "$REDIS_URL" ]; then
     RPORT=`echo $hostport | grep -oE "[^:]+$"`
 fi
 
-sed -i 's/TYKDIR/'$TYKDIR'/g' $TYKDIR/tyk.conf
+sed -i 's|TYKDIR|'$TYKDIR'|g' $TYKDIR/tyk.conf
 sed -i 's/RPORT/'$RPORT'/g' $TYKDIR/tyk.conf
 sed -i 's/PORT/'$PORT'/g' $TYKDIR/tyk.conf
 sed -i 's/SECRET/'$SECRET'/g' $TYKDIR/tyk.conf
