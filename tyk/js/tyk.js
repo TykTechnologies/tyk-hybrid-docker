@@ -1,29 +1,29 @@
 // ----- Tyk Middleware JS definition: this should be in the global context -----
 
 var TykJS = {
-        TykMiddleware: {
-            MiddlewareComponentMeta: function(configuration) {
-                this.configuration = configuration;
-            }
-        },
-        TykEventHandlers: {
-                EventHandlerComponentMeta: function() {}
+    TykMiddleware: {
+        MiddlewareComponentMeta: function(configuration) {
+            this.configuration = configuration;
         }
+    },
+    TykEventHandlers: {
+        EventHandlerComponentMeta: function() {}
+    }
 };
 
-TykJS.TykMiddleware.MiddlewareComponentMeta.prototype.ProcessRequest = function(request, session) {
+TykJS.TykMiddleware.MiddlewareComponentMeta.prototype.ProcessRequest = function(request, session, config) {
     log("Process Request Not Implemented");
     return request;
 };
 
-TykJS.TykMiddleware.MiddlewareComponentMeta.prototype.DoProcessRequest = function(request, session) {
-    var processed_request = this.ProcessRequest(request, session);
+TykJS.TykMiddleware.MiddlewareComponentMeta.prototype.DoProcessRequest = function(request, session, config) {
+    var processed_request = this.ProcessRequest(request, session, config);
 
     if (!processed_request) {
         log("Middleware didn't return request object!");
         return;
     }
-    
+
     // Reset the headers object
     processed_request.Request.Headers = {}
 
@@ -45,6 +45,10 @@ TykJS.TykMiddleware.NewMiddleware.prototype.NewProcessRequest = function(callbac
 
 TykJS.TykMiddleware.NewMiddleware.prototype.ReturnData = function(request, session) {
     return {Request: request, SessionMeta: session}
+};
+
+TykJS.TykMiddleware.NewMiddleware.prototype.ReturnAuthData = function(request, session) {
+    return {Request: request, Session: session}
 };
 
 // ---- End middleware implementation for global context ----
