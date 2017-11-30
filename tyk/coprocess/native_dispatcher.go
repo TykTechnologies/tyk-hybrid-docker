@@ -14,11 +14,11 @@ package coprocess
 import "C"
 import "unsafe"
 
-import(
-	"github.com/TykTechnologies/tykcommon"
+import (
+	"github.com/TykTechnologies/tyk/apidef"
 )
 
-const(
+const (
 	_ = iota
 	JsonMessage
 	ProtobufMessage
@@ -39,7 +39,7 @@ type Dispatcher interface {
 	LoadModules()
 
 	// HandleMiddlewareCache is called when a bundle has been loaded and the dispatcher needs to cache its contents. Used by Lua.
-	HandleMiddlewareCache(*tykcommon.BundleManifest, string)
+	HandleMiddlewareCache(*apidef.BundleManifest, string)
 
 	// Reload is called when a hot reload is triggered. Used by all the CPs.
 	Reload()
