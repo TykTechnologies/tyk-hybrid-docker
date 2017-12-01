@@ -1,8 +1,0 @@
-{
-    "event": "{{.EventType}}",
-    "message": "{{.EventMetaData.Message}}",
-    "path": "{{.EventMetaData.Path}}",
-    "origin": "{{.EventMetaData.Origin}}",
-    "key": "{{.EventMetaData.Key}}"
-}
-
