@@ -59,11 +59,11 @@ PORT=$1
 SECRET=$2
 ORGID=$3
 APIKEY=$4
+IMAGE=tykio/tyk-hybrid-docker
 
 docker stop tyk_hybrid && docker rm tyk_hybrid
-docker pull tykio/tyk-hybrid-docker:latest
+docker pull $IMAGE:latest
 
-CONTAINER=tykio/tyk-hybrid-docker
 docker run --restart always -v $cwd/confs:/etc/nginx/sites-enabled \
         -d --name tyk_hybrid \
         -p $PORT:$PORT \
@@ -76,7 +76,7 @@ docker run --restart always -v $cwd/confs:/etc/nginx/sites-enabled \
         -e REDISPW=$REDISPW \
         -e RPORT=$RPORT \
         -e BINDSLUG=1 \
-        $CONTAINER
+        $IMAGE
 
 # Add the following environment variable to disable the nginx service
 # -e DISABLENGINX=1 \
