@@ -82,7 +82,7 @@ docker run --restart always -v $cwd/confs:/etc/nginx/sites-enabled \
 # -e DISABLENGINX=1 \
 
 # Add the following environment variable to have the node bind URLs to API IDs instead of Slugs
-# -e BINDSLUG=0 \
+# -e BINDSLUG="" \
         
 echo "Tyk Hybrid Node Running"
 echo "- To test the node, use port $PORT"
