@@ -31,7 +31,7 @@ RUN apt-get update \
 # The application RUN command is separated from the dependencies to enable app updates to use docker cache for the deps
 RUN echo "deb https://packagecloud.io/tyk/tyk-gateway-unstable/debian/ jessie main" | tee /etc/apt/sources.list.d/tyk_tyk-gateway-unstable.list \
  && apt-get update \
- && apt-get install -y tyk-gateway \
+ && apt-get install -y --force-yes tyk-gateway \
  && rm -rf /var/lib/apt/lists/*
 
 RUN rm /etc/nginx/sites-enabled/default && rm /etc/nginx/sites-available/default
