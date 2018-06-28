@@ -13,7 +13,8 @@
     "username": "",
     "password": "",
     "database": 0,
-    "optimisation_max_idle": 100
+    "optimisation_max_idle": 2000,
+    "optimisation_max_active": 4000
   },
   "enable_analytics": false,
   "analytics_config": {
@@ -36,5 +37,7 @@
     	"policy_record_name": "tyk_policies"
     },
   "hash_keys": true,
-  "suppress_redis_signal_reload": false
+  "suppress_redis_signal_reload": false,
+  "close_connections": false,
+  "max_idle_connections_per_host": 500,
 }
