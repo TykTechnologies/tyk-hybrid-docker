@@ -34,6 +34,8 @@ RUN echo "deb https://packagecloud.io/tyk/tyk-gateway/debian/ jessie main" | tee
  && apt-get install -y tyk-gateway=$TYKVERSION \
  && rm -rf /var/lib/apt/lists/*
 
+RUN apt-get install -y nscd
+
 RUN rm /etc/nginx/sites-enabled/default && rm /etc/nginx/sites-available/default
 
 COPY nginx/1_upstream.conf /etc/nginx/conf.d/
