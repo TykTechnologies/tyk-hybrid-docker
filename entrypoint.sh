@@ -29,6 +29,7 @@ fi
 echo "--> Starting Tyk Hybrid"
 echo ""
 service redis-server start
+service nscd start
 
 cd /opt/tyk-gateway/
 CONFPATH=/opt/tyk-gateway
