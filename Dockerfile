@@ -26,15 +26,13 @@ RUN apt-get update \
  && rm -rf /root/.cache
 
 RUN apt-get update \
- && apt-get install -y --no-install-recommends redis-server nginx
+ && apt-get install -y --no-install-recommends redis-server nginx nscd
 
 # The application RUN command is separated from the dependencies to enable app updates to use docker cache for the deps
 RUN echo "deb https://packagecloud.io/tyk/tyk-gateway/debian/ jessie main" | tee /etc/apt/sources.list.d/tyk_tyk-gateway.list \
  && apt-get update \
  && apt-get install -y tyk-gateway=$TYKVERSION \
  && rm -rf /var/lib/apt/lists/*
-
-RUN apt-get install -y nscd
 
 RUN rm /etc/nginx/sites-enabled/default && rm /etc/nginx/sites-available/default
 
