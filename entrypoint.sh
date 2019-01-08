@@ -34,4 +34,4 @@ cd /opt/tyk-gateway/
 CONFPATH=/opt/tyk-gateway
 # Compatibility with old directory structure
 [ -f /opt/tyk/tyk.conf ] && CONFPATH=/opt/tyk
-./tyk$TYKLANG --conf=$CONFPATH/tyk.conf --httpprofile
+./tyk$TYKLANG --conf=$CONFPATH/tyk.conf
