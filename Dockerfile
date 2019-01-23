@@ -1,7 +1,7 @@
 FROM debian:jessie-slim
 
 ENV GRPCVERSION 1.7.0
-ENV TYKVERSION 2.7.4
+ENV TYKVERSION 2.7.5
 ENV TYKLANG ""
 
 LABEL Description="Tyk Gateway docker image" Vendor="Tyk" Version=$TYKVERSION
@@ -31,7 +31,7 @@ RUN apt-get update \
 # The application RUN command is separated from the dependencies to enable app updates to use docker cache for the deps
 RUN echo "deb https://packagecloud.io/tyk/tyk-gateway/debian/ jessie main" | tee /etc/apt/sources.list.d/tyk_tyk-gateway.list \
  && apt-get update \
- && apt-get install -y tyk-gateway=$TYKVERSION \
+ && apt-get install --allow-unauthenticated -f --force-yes -y tyk-gateway=$TYKVERSION \
  && rm -rf /var/lib/apt/lists/*
 
 RUN rm /etc/nginx/sites-enabled/default && rm /etc/nginx/sites-available/default
